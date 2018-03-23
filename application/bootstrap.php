@@ -13,13 +13,27 @@
  */
 
 
+
 use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
+
+//require_once 'vendor/autoload.php';
+
+use Doctrine\ORM\Tools\Setup;
+use Doctrine\ORM\EntityManager;
+//use Cerad\Bundle\CoreBundle\Doctrine\DQL\Date;
+
+
 
 
 $isDevMode = true;
 
+
 $config = Setup::createAnnotationMetadataConfiguration(array(__DIR__."/models/entities"),$isDevMode, null, null, false);
+ 
+
+
+
  
 
 
