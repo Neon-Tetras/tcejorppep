@@ -1,5 +1,6 @@
 <?php
 namespace models\entities\messages;
+
 use models\entities\User;
 use Doctrine\ORM\Mapping as ORM;
 /*
@@ -13,7 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @author NeonTetras
  * @ORM\Table (name="messages")
- * @ORM\Entity (repositoryClass="MessageRepository")
+ * @ORM\Entity (repositoryClass="models\entities\repositories\MessageRepository")
  */
 class Messages {
     
@@ -66,11 +67,7 @@ class Messages {
      */
     protected $conversation;
     
-   
     
-   
-
-
     /**
      * @ORM\Column (type="datetimetz")
      * 

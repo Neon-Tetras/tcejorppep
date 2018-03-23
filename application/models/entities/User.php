@@ -64,7 +64,7 @@ class User  {
     protected $password = null;
     /**
      * 
-     * @ORM\Column(type="datetime", nullable=true,options={"default": 0}))
+     * @ORM\Column(type="datetime", nullable=true, options={"default":0})
      * 
      * @var DateTime
      */
@@ -74,6 +74,12 @@ class User  {
      * @var DateTime
      */
     protected $lastLogin = null;
+    
+    /**
+     * @ORM\Column(type="string", nullable=false, length=20);
+     * @var string
+     */
+    protected $referralId = null;
     
     function getId() {
         return $this->id;
@@ -137,6 +143,14 @@ class User  {
 
     function setLastLogin(DateTime $lastLogin) {
         $this->lastLogin = $lastLogin;
+    }
+    
+    function getReferralId() {
+        return $this->referralId;
+    }
+
+    function setReferralId($referralId) {
+        $this->referralId = $referralId;
     }
 
 
