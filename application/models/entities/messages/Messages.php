@@ -1,7 +1,7 @@
 <?php
 namespace models\entities\messages;
 
-use models\entities\User;
+use models\entities\Users;
 use Doctrine\ORM\Mapping as ORM;
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -60,17 +60,14 @@ class Messages {
     protected $document;
     
      
-    
-    
-       
     /**
      * @ORM\ManyToOne(targetEntity="models\entities\Users", inversedBy="messages")
-     * @var User
+     * @var Users
      */
     protected $user;
      /**
-     * @ORM\ManyToOne(targetEntity="Conversations", inversedBy="messages")
-     * @var Conversation
+     * @ORM\ManyToOne(targetEntity="models\entities\messages\Conversations", inversedBy="messages")
+     * @var Conversations
      */
     protected $conversation;
     
@@ -85,7 +82,7 @@ class Messages {
     /**
      * @ORM\Column(name="is_broadcast", length=1, type="integer", options={"default":0})
      */
-    protected $isBroadcast;
+    protected $isBroadcast = 0;
     
     public function getId() {
         return $this->id;
@@ -116,7 +113,7 @@ class Messages {
 
    
 
-    public function getUser(): User {
+    public function getUser(): Users {
         return $this->user;
     }
 
@@ -152,7 +149,7 @@ class Messages {
     }
 
    
-    public function setUser(User $user) {
+    public function setUser(Users $user) {
         $this->user = $user;
         $user->assignToMessage($this);
     }
@@ -169,7 +166,7 @@ class Messages {
         return $this->conversation;
     }
 
-    public function setConversation(Conversation $conversation) {
+    public function setConversation(Conversations $conversation) {
         $this->conversation = $conversation;
         $conversation->setMessages($this);
     }

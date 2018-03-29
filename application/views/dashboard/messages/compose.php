@@ -33,7 +33,7 @@
 
             <div class="form-group" >
 
-                <input type="checkbox" name=" " id="isBroadcast" value="<?=set_value("isBroadcast")?>"/> Broadcast message
+                <input type="checkbox" name=" " id="isBroadcast" value="1"/> Broadcast message
 
             </div>
 
@@ -58,7 +58,7 @@
 
             <div class="form-group">
                 <p>Message body:</p>
-                <textarea class="form-control" rows="20" required name="body"></textarea>
+                <textarea class="form-control" rows="20" required name="body"><?=set_value("body")?></textarea>
                 <br/>
                 <span style="font-size: 14px; color:red;"> <?=form_error("body"); ?></span>
             </div>

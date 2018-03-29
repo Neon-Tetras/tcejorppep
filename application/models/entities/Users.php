@@ -2,6 +2,7 @@
 namespace models\entities;
 
 use Doctrine\ORM\Mapping as ORM;
+use models\entities\messages\Messages;
 
 
 
@@ -25,9 +26,11 @@ use Doctrine\ORM\Mapping as ORM;
 
 class Users  {
     
-    
+    function __construct() {
+        $this->messages = new ArrayCollection();
+    }
 
-    /**
+        /**
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
@@ -147,6 +150,12 @@ class Users  {
      * )
      */
     protected $groups;
+    
+     /**
+     * @ORM\OneToMany(targetEntity="models\entities\messages\Messages", mappedBy="user")
+     * @var Messages[] An ArrayCollection of Message objects
+     */
+    protected $messages = null;
     
     function getId() {
         return $this->id;
@@ -306,6 +315,18 @@ class Users  {
 
     function setGroups($groups) {
         $this->groups = $groups;
+    }
+
+      public function assignToMessage(Messages $msg){
+        $this->messages[] = $msg;
+    }
+
+    function getMessages(): array {
+        return $this->messages;
+    }
+
+    function setMessages(array $messages) {
+        $this->messages = $messages;
     }
 
 

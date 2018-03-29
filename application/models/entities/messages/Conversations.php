@@ -50,7 +50,7 @@ class Conversations {
     protected $date;
     
     /**
-     * @ORM\OneToMany(targetEntity="Messages", mappedBy="conversation")
+     * @ORM\OneToMany(targetEntity="models\entities\messages\Messages", mappedBy="conversation")
      * @var Messages an ArrayCollection of Messages
      */
     protected $messages = null;

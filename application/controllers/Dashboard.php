@@ -78,14 +78,17 @@ class Dashboard  extends CI_Controller{
         $this->form_validation->set_rules("subject","Subject","required|min_length[5]|max_length[255]");
         $this->form_validation->set_rules("body","Body","required|min_length[5]|max_length[255]");
         $subject = $this->input->post("subject");
-        
-        $isBroadcast = empty($this->input->post("isBroadcast")) ? 0 : 1;
+        //Could not get this to work. To check if the message is a broadcast or not
+       $checked = $this->input->post("isBroadcast");
+       
+        $isBroadcast = ((int)$checked == 1) ? 1 : 0;
+       // $isBroadcast = !$this->input->post("isBroadcast") ? 0 : 1;
         $r_id= $isBroadcast == 0 ? $this->input->post("recipient") : "";
         $rep = $this->em->getRepository(Users::class);
         $recipient = $rep->find(array("id"=>$r_id));
         $body = $this->input->post("body");
         
-      $broadcast = $isBroadcast == 1;
+    //  $broadcast = $isBroadcast == 1;
         
         if($this->form_validation->run() == false){
             $this->compose_message();
@@ -93,28 +96,31 @@ class Dashboard  extends CI_Controller{
               $conversation = new Conversations();
                   if(!$broadcast){
                     $conversation->setRecipient($recipient);
+                    $conversation->setRecipient($recipient);
                  }
-            $conversation->setRecipient($recipient);
+            
             $conversation->setSender($this->user);
             $conversation->setDate((new DateTime("now")));
             
         $msg = new Messages();
         $msg->setSubject($subject);
         $msg->setMessage($body);
-        if($broadcast){
-            $msg->setIsBroadcast(1);
-        }
+       
+            $msg->setIsBroadcast($isBroadcast);
         
+        
+         $this->em->persist($conversation);
+        $this->em->flush();
+        $msg->setUser($this->user);
         $msg->setDate(new DateTime("now"));
-        
+        $msg->setConversation($conversation);
         $this->em->persist($msg);
         $this->em->flush();
         
         //$rep->
         //TODO: get last insert id of  message and add to conversation
-        $conversation->setMessages($msg);
-        $this->em->persist($conversation);
-        $this->em->flush();
+        //$conversation->setMessages($msg);
+      
         
         $_SESSION['message_sending_success'] = "Message sent successfully";
         $this->session->mark_as_flash('message_sending_success');
