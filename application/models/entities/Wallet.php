@@ -29,7 +29,7 @@ class Wallet {
     
    
     /**
-     * @ORM\ManyToOne(targetEntity="user", inversedBy="wallets")
+     * @ORM\ManyToOne(targetEntity="users", inversedBy="wallets")
      * @var User
      */
     protected $user;

@@ -24,6 +24,13 @@ class Messages {
      * @ORM\GeneratedValue
      */
     protected $id;
+    
+     /**
+     * @ORM\Column (type="text", options={"customSchemaOptions"={"collate"="utf8mb4_unicode_ci"}})
+     * @var string
+     * 
+     */
+    protected $subject;
     /**
      * @ORM\Column (type="text", options={"customSchemaOptions"={"collate"="utf8mb4_unicode_ci"}})
      * @var string
@@ -34,20 +41,20 @@ class Messages {
    
     
     /**
-     * @ORM\Column (type="string", length=250)
+     * @ORM\Column (type="string", length=250, nullable=true)
      * @var string
      */
     protected $image;
     
     /**
-     * @ORM\Column (type="string", length=250)
+     * @ORM\Column (type="string", length=250, nullable=true)
      * @var string
      */
     protected $video;
     
     
         /**
-     * @ORM\Column (type="string", length=250)
+     * @ORM\Column (type="string", length=250, nullable=true)
      * @var string
      */
     protected $document;
@@ -57,7 +64,7 @@ class Messages {
     
        
     /**
-     * @ORM\ManyToOne(targetEntity="models\entities\User", inversedBy="messages")
+     * @ORM\ManyToOne(targetEntity="models\entities\Users", inversedBy="messages")
      * @var User
      */
     protected $user;
@@ -74,6 +81,11 @@ class Messages {
      * @var DateTime
      */
     protected $date;
+    
+    /**
+     * @ORM\Column(name="is_broadcast", length=1, type="integer", options={"default":0})
+     */
+    protected $isBroadcast;
     
     public function getId() {
         return $this->id;
@@ -149,7 +161,7 @@ class Messages {
         return $this->date;
     }
 
-    public function setDate(DateTime $date) {
+    public function setDate($date) {
         $this->date = $date;
     }
     
@@ -162,7 +174,23 @@ class Messages {
         $conversation->setMessages($this);
     }
     
-   
+    function getSubject() {
+        return $this->subject;
+    }
+
+    function getIsBroadcast() {
+        return $this->isBroadcast;
+    }
+
+    function setSubject($subject) {
+        $this->subject = $subject;
+    }
+
+    function setIsBroadcast($isBroadcast) {
+        $this->isBroadcast = $isBroadcast;
+    }
+
+
 
 
 }

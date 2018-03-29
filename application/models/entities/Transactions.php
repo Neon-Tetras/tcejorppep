@@ -35,7 +35,7 @@ class Transactions {
     protected $transactionId;
    
     /**
-     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\ManyToOne(targetEntity="Users")
      * @var User
      */
     protected $user;

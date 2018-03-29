@@ -134,4 +134,6 @@ $autoload['language'] = array();
 */
 $autoload['model'] = array();
 
- $autoload['libraries'] = array('doctrine');
+ $autoload['libraries'] = array('doctrine','email','database','session','upload');
+ 
+ 

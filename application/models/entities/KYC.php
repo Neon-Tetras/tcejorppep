@@ -26,18 +26,18 @@ class KYC {
      */
     protected $id;
     /**
-     * @ORM\OneToOne(targetEntity="models\entities\User")
+     * @ORM\OneToOne(targetEntity="models\entities\Users")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     protected $user;
     
     /**
-     @ORM\Column(type="string", nullable=false)
+     @ORM\Column(type="string", nullable=true)
      *
      */
     protected $idCard;
     /**
-     * @ORM\Column (type="string", nullable=false)
+     * @ORM\Column (type="string", nullable=true)
      */
     protected $picture;
     /**
@@ -50,13 +50,13 @@ class KYC {
      */
     protected $status  = 0;
     /**
-     * @ORM\Column(type="datetime", options={"default": "CURRENT_TIMESTAMP"})
-     * @var DateTime
+     * @ORM\Column(type="datetimetz", options={"default": "CURRENT_TIMESTAMP"})
+     * 
      */
-    protected $created = null;
+    protected $created;
     /**
      *@ORM\Column(type="datetime", nullable=true)
-     *@var DateTime
+     *
      */
     protected $updated;
     
@@ -116,11 +116,11 @@ class KYC {
         $this->status = $status;
     }
 
-    function setCreated(DateTime $created) {
+    function setCreated($created) {
         $this->created = $created;
     }
 
-    function setUpdated(DateTime $updated) {
+    function setUpdated($updated) {
         $this->updated = $updated;
     }
 

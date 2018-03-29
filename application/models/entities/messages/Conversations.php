@@ -30,14 +30,14 @@ class Conversations {
      */
     protected $id;
      /**
-     * @ORM\ManyToOne(targetEntity="models\entities\User", inversedBy="conversations")
+     * @ORM\ManyToOne(targetEntity="models\entities\Users", inversedBy="conversations")
      * 
       * @var 
      * 
      */
     protected $sender;
      /**
-     *@ORM\ManyToOne(targetEntity="models\entities\User", inversedBy="conversations")
+     *@ORM\ManyToOne(targetEntity="models\entities\Users", inversedBy="conversations")
      * 
      * @var User
      */
@@ -89,7 +89,7 @@ class Conversations {
         $this->recipient = $recipient;
     }
 
-    public function setDate(DateTime $date) {
+    public function setDate($date) {
         $this->date = $date;
     }
 

@@ -35,7 +35,7 @@ class Trade {
     protected $transactionId;
    
     /**
-     * @ORM\ManyToOne(targetEntity="user")
+     * @ORM\ManyToOne(targetEntity="users")
      * @var User
      */
     protected $user;
